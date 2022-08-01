@@ -22,23 +22,51 @@
       </div>
 
       <div class="flex flex-col md:justify-center">
-        <button
-          class="px-5 py-3 text-xs rounded-md text-zinc-800 bg-lime-500 hover:bg-lime-700 hover:text-white duration-500"
-        >
-          Add to cart
-        </button>
+        <add-to-cart-btn
+          @cart-click="cartClick"
+          :click="click"
+        ></add-to-cart-btn>
       </div>
     </slot>
   </div>
 </template>
 
 <script>
+import AddToCartBtn from "../../../layouts/AddToCartBtn.vue";
 export default {
+  emits: ["cart-click"],
+
+  components: { AddToCartBtn },
+  data() {
+    return {
+      click: false,
+    };
+  },
   props: {
     product: {
       type: Object,
       required: true,
     },
+  },
+  methods: {
+    cartClick() {
+      // const button = document.querySelector(".cart-button");
+      // let button = document.querySelector(".cart-button");
+      // button.classList.add("clicked");
+      console.log("cartClick");
+      this.click = true;
+      setTimeout(() => {
+        this.click = false;
+      }, 3000);
+    },
+  },
+  computed: {
+    cartClicked() {
+      return this.click;
+    },
+  },
+  componetns: {
+    AddToCartBtn,
   },
 };
 </script>
