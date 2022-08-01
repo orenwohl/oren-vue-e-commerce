@@ -6,8 +6,9 @@ import "./assets/tailwind.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-// import AOS from "aos";
+import AOS from "aos";
 import "aos/dist/aos.css";
+AOS.init();
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 library.add(faShoppingCart);

@@ -10,7 +10,6 @@
           data-aos-easing="ease-in"
           data-aos-mirror="true"
           data-aos-once="false"
-          data-aos-id="super-duper"
           data-aos-anchor-placement=" top-center"
           v-for="prod in allProducts"
           :key="prod.id"
