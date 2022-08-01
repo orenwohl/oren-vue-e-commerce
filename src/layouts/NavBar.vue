@@ -2,11 +2,11 @@
   <div
     class="bg-gray-600 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen md: md:px-24 lg:px-8"
   >
+    >
     <div class="relative flex grid items-center grid-cols-2 lg:grid-cols-3">
       <ul class="flex items-center hidden space-x-8 lg:flex">
         <li>
           <a
-            href="/"
             aria-label="Our product"
             title="Our product"
             class="font-medium tracking-wide text-white transition-colors duration-200 hover:text-lime-500"
@@ -71,16 +71,24 @@
 
         <li>
           <a
-            href="/shopping-cart"
-            class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+            href="/shopping-cart "
+            class="inline-flex items-center relative justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
             aria-label="Sign up"
             title="Sign up"
           >
-            <font-awesome-icon
-              icon="fa-solid fa-shopping-cart"
-              class="text-white hover:text-lime-500 duration-200"
-              size="xl"
-            />
+            <router-link to="/shopping-cart" class="text-white">
+              <font-awesome-icon
+                icon="fa-solid fa-shopping-cart"
+                class="text-white hover:text-lime-500 duration-200"
+                size="xl"
+              />
+            </router-link>
+
+            <span
+              class="absolute top-0 right-0 transition-all active:"
+              :class="cartTotal ? ' ' : 'text-white'"
+              >{{ cartTotal }}</span
+            >
           </a>
         </li>
       </ul>
@@ -88,7 +96,7 @@
         <button
           aria-label="Open Menu"
           title="Open Menu"
-          class="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
+          class="p-2 -mr-1 active:animate-ping transition-all duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
           @click="isMenuOpen = true"
         >
           <svg class="w-5 text-white" viewBox="0 0 24 24">
@@ -106,7 +114,10 @@
             ></path>
           </svg>
         </button>
-        <div v-if="isMenuOpen" class="absolute top-0 left-0 w-full">
+        <div
+          v-if="isMenuOpen"
+          class="absolute top-0 left-0 w-full translate-x--7"
+        >
           <div class="p-5 bg-white border rounded shadow-sm">
             <div class="flex items-center justify-between mb-4">
               <div>
@@ -141,7 +152,7 @@
                 <button
                   aria-label="Close Menu"
                   title="Close Menu"
-                  class="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  class="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:animate-ping"
                   @click="isMenuOpen = false"
                 >
                   <svg class="w-5 text-gray-600" viewBox="0 0 24 24">
@@ -192,19 +203,20 @@
                   >
                 </li>
                 <li>
-                  <a
-                    href="/shopping-cart"
-                    class="font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"
-                    aria-label="Sign up"
-                    title="Sign up"
-                    cla
-                  >
-                    <font-awesome-icon
-                      icon="fa-solid fa-shopping-cart"
-                      class="text-black"
-                      size="xl"
-                    />
-                  </a>
+                  <router-link to="/shopping-cart" class="text-white">
+                    <a
+                      class="relative font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"
+                      aria-label="Sign up"
+                      title="Sign up"
+                    >
+                      <font-awesome-icon
+                        icon="fa-solid fa-shopping-cart"
+                        class="text-black"
+                        size="xl"
+                      />
+                      <span class="absolute">{{ cartTotal }}</span>
+                    </a>
+                  </router-link>
                 </li>
               </ul>
             </nav>
@@ -217,6 +229,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   components: {},
   data() {
@@ -224,10 +237,14 @@ export default {
       isMenuOpen: false,
     };
   },
+
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
+  },
+  computed: {
+    ...mapGetters("cart", ["cart", "cartTotal"]),
   },
 };
 </script>

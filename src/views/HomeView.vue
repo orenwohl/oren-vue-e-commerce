@@ -49,10 +49,8 @@ export default {
   },
 
   computed: {
-    counter() {
-      return this.$store.getters.finalCounter;
-    },
     ...mapGetters("products", ["allProducts"]),
+    ...mapGetters("cart", ["cart", "cartTotal"]),
   },
 
   components: { ProductCard, LoadingSpinner },

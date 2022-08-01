@@ -33,6 +33,7 @@
 
 <script>
 import AddToCartBtn from "../../../layouts/AddToCartBtn.vue";
+import { mapGetters, mapActions } from "vuex";
 export default {
   emits: ["cart-click"],
 
@@ -49,7 +50,18 @@ export default {
     },
   },
   methods: {
+    ...mapActions("cart", ["addItemToCart"]),
+
     cartClick() {
+      const product = {
+        id: this.product.id,
+        title: this.product.title,
+        price: this.product.price,
+        category: this.product.category,
+        images: this.product.images[1],
+        quantity: 1,
+      };
+      this.addItemToCart(product);
       // const button = document.querySelector(".cart-button");
       // let button = document.querySelector(".cart-button");
       // button.classList.add("clicked");
@@ -64,6 +76,9 @@ export default {
     cartClicked() {
       return this.click;
     },
+
+    ...mapGetters("products", ["allProducts"]),
+    ...mapGetters("cart", ["cart", "cartTotal"]),
   },
   componetns: {
     AddToCartBtn,

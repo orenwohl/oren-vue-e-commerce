@@ -11,11 +11,7 @@
       class="fa-shopping-cart"
       size="xl"
     />
-    <font-awesome-icon
-      icon="fa-solid fa-shopping-cart"
-      class="fa-box"
-      size="xl"
-    />
+    <font-awesome-icon icon="fa-solid fa-box" class="fa-box" size="xl" />
   </button>
 </template>
 <script>
