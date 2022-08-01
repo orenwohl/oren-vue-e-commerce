@@ -2,7 +2,7 @@
 
 ## Project Demo
 
-[Live Demo](https://62e79458c9d37414c3ac8e45--teal-parfait-061648.netlify.app/) - Live Demo 
+[Live Demo](https://62e7ae1753dd0128ce419c8e--teal-parfait-061648.netlify.app/) 
 
 ## Project setup
 ```
