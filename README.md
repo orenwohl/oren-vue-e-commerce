@@ -1,4 +1,4 @@
-# oren-vue
+# oren-vue-store
 
 ## Project Demo
 
